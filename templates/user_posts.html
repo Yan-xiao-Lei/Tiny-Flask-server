@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+{% block content %}
+<style>
+    h2{
+        margin-bottom: 2rem;
+    }
+    .post{
+        width: 25rem;
+        margin-bottom: 1rem;
+        background-color: rgb(222, 222, 222);
+        display: grid;
+        grid-template-columns: 1fr 5fr;
+        padding: 0.5rem 1rem;
+        border-radius: 0.3rem;
+    }
+    img{
+        height: 4rem; width: 4rem;
+        border-radius: 50%;
+    }
+</style>
+    <h2><small>{{ user.username }}的帖子:</small> {{ posts.count() }}条😃</h2>
+    {% for post in posts %}
+    <div class="post">
+        <div>
+    <img src="{{ url_for('static', filename=post.author.image_file) }}" alt="">
+        </div>
+        <div>
+        <p><a href="{{ url_for('users.user_posts', username=post.author.username) }}">{{ post.author.username }}</a> on {{ post.date_posted.strftime('%Y-%m-%d') }}</p>
+        <h1><a href="{{ url_for('posts.post', post_id=post.id)  }}">{{ post.title }}</a></h1>
+        <p>{{ post.content }}</p>
+        </div>
+    </div>
+        
+    {% endfor %}
+{% endblock content %}
+    

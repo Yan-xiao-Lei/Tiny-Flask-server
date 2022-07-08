@@ -1,0 +1,67 @@
+{% extends 'layout.html' %}
+{% block content %}
+<style>
+.forms{
+    width: 20rem;
+    border: 0.1rem solid rgb(211, 211, 211);
+    border-radius: 1px;
+    padding-top: 2rem;
+}
+
+.unit{
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    margin-bottom: .5rem;
+}
+.label{
+    margin-right: 0.5rem;
+    width: 4rem;
+}
+
+.submit{
+    padding: 0.3rem 0.6rem;
+    background-color: rgb(224, 224, 224);
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 7rem;
+}
+.submit:hover{
+    background-color: rgb(181, 181, 181);
+    transform: scale(1.05);
+}  
+</style>
+<div class="forms">
+    <form action="" method="post">
+        {{form.hidden_tag()}}
+            <div class="unit">
+                {{form.username.label(class='label')}}
+                {% if form.username.errors %}
+                {% else %}
+                    {{form.username}}
+                {% endif %}
+            </div>
+            <div class="unit">
+                {{form.email.label(class='label')}}
+                {{form.email}}
+            </div>
+            <div class="unit">
+                {{form.password.label(class='label')}}
+                {{form.password}}
+            </div>
+            <div class="unit">
+                {{ form.confirm_password.label(class='label') }}
+                {{ form.confirm_password }}
+            </div>
+        <div class="unit">
+            {{ form.submit(class='submit') }}
+        </div>
+    </form>
+    <div>
+        <small>
+            已经有了账户 ? <a style="text-decoration: none;" href="{{url_for('users.login')}}">登录</a>
+        </small>
+    </div>
+</div>
+{% endblock content %}

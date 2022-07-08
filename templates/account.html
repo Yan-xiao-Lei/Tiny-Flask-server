@@ -1,0 +1,86 @@
+{% extends 'layout.html' %}
+{% block content %}
+<style>
+    .account{
+        width: 28rem;
+        border: 2px solid rgb(217, 217, 217);
+        padding: 1rem;
+        border-radius: 2px;
+    }
+    .basic{
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        margin-bottom: 1rem;
+    }
+    img{
+        border-radius: 50%;    
+        height: 6rem; width: 6rem
+    }
+    .info{
+        border: 1px solid rgb(219, 219, 219);
+        padding: 0.3rem 0.6rem;
+    }
+    .unit{
+        display: flex;
+        align-items: center;
+        padding-left: 1rem;
+        margin-top: .5rem;
+    }
+    .label{
+        width: 4rem;
+        margin-right: 0.5rem;
+    }
+    .submit{
+        padding: 0.3rem 0.6rem;
+        background-color: rgb(224, 224, 224);
+        border: none;
+        cursor: pointer;
+        border-radius: 4px;
+        margin-left: 7rem;
+    }
+    .submit:hover{
+        background-color: rgb(181, 181, 181);
+        transform: scale(1.05);
+    }
+</style>
+    <div class="account">
+        <div class="basic">
+        <img src="{{ image_file }}" alt="image">
+        <div class="name">
+            <h2>{{ current_user.username }}</h2>
+            <p><small>{{ current_user.email }}</small></p>
+        </div>
+        </div>
+        <div class="info">
+            <form action="" method="post" enctype="multipart/form-data">
+                {{form.hidden_tag()}}
+                    <legend>账户信息</legend>
+                    <br>
+                    <div class="unit">
+                        {{form.username.label(class='label')}}
+                        {% if form.username.errors %}
+                        {% else %}
+                            {{form.username}}
+                        {% endif %}
+                    </div>
+                    <div class="unit">
+                        {{form.email.label(class='label')}}
+                        {{form.email}}
+                    </div>
+                    <div class="unit">
+                        {{form.picture.label(class='label')}}
+                        {{form.picture}}
+                        {% if form.picture.errors %}
+                            {% for error in form.email.errors %}
+                                <span>{{error}}</span><br>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                <div class="unit">
+                    {{ form.submit(class='submit') }}
+                </div>
+            </form>
+
+        </div>
+    </div>
+{% endblock content %}

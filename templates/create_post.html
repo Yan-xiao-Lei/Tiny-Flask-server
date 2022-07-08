@@ -1,0 +1,71 @@
+
+{% extends 'layout.html' %}
+{% block content %}
+<style>
+.forms{
+    width: 20rem;
+    border: 0.1rem solid rgb(211, 211, 211);
+    border-radius: 1px;
+}
+.center-unit{
+    display: flex;
+    justify-content: center;
+    margin: 1rem 0;
+}
+.unit{
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+    margin-bottom: .5rem;
+}
+.label{
+    margin-right: 0.5rem;
+}
+.input{
+    width: 12rem;
+    border: 2px solid gray;
+    border-radius: 1.5px;
+    height: 5vh;
+}
+.is{
+    height: 15vh;
+}
+.submit{
+    padding: 0.3rem 0.6rem;
+    background-color: rgb(224, 224, 224);
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-left: 7rem;
+}
+.submit:hover{
+    background-color: rgb(181, 181, 181);
+    transform: scale(1.05);
+}    
+</style>
+
+<div class="forms">
+    <form action="" method="post">
+        {{form.hidden_tag()}}
+            <legend class="center-unit">新帖</legend>
+            <div class="unit">
+                {{form.title.label(class='label')}}
+                {% if form.title.errors %}
+                {% else %}
+                    {{form.title(class='input')}}
+                {% endif %}
+            </div>
+            <div class="unit">
+                {{form.content.label(class='label')}}
+                {{form.content(class='input is')}}
+            </div>
+            <div class="unit">
+                {{form.body.label(class='label')}}
+                {{form.body(class='input is')}}
+            </div>
+        <div class="unit">
+            {{form.submit(class='submit')}}
+        </div>
+    </form>
+</div>
+{% endblock content %}

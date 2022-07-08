@@ -1,0 +1,28 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div>
+        <form action="" method="post">
+            {{form.hidden_tag()}}
+            <fieldset>
+                <legend>Email</legend>
+                <div>
+                    {{form.password.label}}
+                    {% if form.password.errors %}
+                    {% else %}
+                        {{form.password}}
+                    {% endif %}
+                </div>
+                <div>
+                    {{form.confirm_password.label}}
+                    {% if form.confirm_password.errors %}
+                    {% else %}
+                        {{form.confirm_password}}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div>
+                {{form.submit}}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

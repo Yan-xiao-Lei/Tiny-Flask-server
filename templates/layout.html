@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {% if title %}
+        <title>Flask Blog - {{title}}</title>
+    {% else %}
+        <title>Flask Blog</title>
+    {% endif %}
+    <style>
+    *{
+        margin: 0;
+
+    }
+    .all{
+        display: grid;
+        margin-bottom: 0;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 6rem auto 4rem;
+        grid-template-areas: 
+        "n n n"
+        "l m s"
+        "f f f";
+    }
+    .container{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    align-items: center;
+    background-color: rgb(164, 164, 164);
+    height: 4rem;
+    grid-area: n;
+    }
+    .left{
+        grid-area: l;
+    }
+    .main{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        grid-area: m;
+    }
+    .sidebar{
+        padding-top: 2rem;
+        display: flex;
+        justify-content: center;
+        grid-area: s;
+    }
+    .footer{
+        grid-area: f;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: fixed;
+    }
+    .middle{
+        display: flex;
+        align-content: center;
+        justify-content: space-between;
+        width: 20rem;
+    }
+    a{
+        text-decoration: none;
+    }
+    </style>
+</head>
+<body>
+    <div class="all">
+    <div class="container">
+        <a href="{{ url_for('main.home') }}">Yan's Blog</a>
+        <div class="middle">
+            <a href="{{ url_for('main.home') }}">主页</a>
+            <a href="{{ url_for('main.about') }}">关于我</a>
+            <form  method="get">
+                <input type="search" name="q" id="" placeholder="Search...">
+                <input type="submit" value="搜索">
+            </form>
+        </div>
+        <div class="right">
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('posts.new_post') }}">发帖</a>
+                <a href="{{ url_for('users.logout') }}">登出</a>
+                <a href="{{ url_for('users.account') }}">账户</a>
+            {% else %}
+                <a href="{{ url_for('users.login') }}">登录</a>
+                <a href="{{ url_for('users.register') }}">注册</a>
+            {% endif %}
+        </div>
+    </div>
+    <div class="main">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert {{category}}">
+                        {{message}}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock content %}
+    </div>
+    <div class="sidebar">
+    </div>
+    <div class="left"></div>
+    </div>
+    <div class="footer"></div>
+</body>
+</html>

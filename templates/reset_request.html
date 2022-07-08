@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+{% block content %}
+    <div>
+        <form action="" method="post">
+            {{form.hidden_tag()}}
+            <fieldset>
+                <legend>Email</legend>
+                <div>
+                    {{form.email.label}}
+                    {% if form.email.errors %}
+                    {% else %}
+                        {{form.email}}
+                    {% endif %}
+                </div>
+            </fieldset>
+            <div>
+                {{form.submit}}
+            </div>
+        </form>
+    </div>
+{% endblock content %}
