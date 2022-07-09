@@ -1,18 +1,13 @@
 ### Hi there 👋
 尝试用flask搭建的简易博客论坛
 
+
 使用说明：
+
 1.在<code>__init__.py</code>中配置好Secret 和 DATABASE_URI
-2.在父文件夹创建<code>run.py</code>
-以本文档示例
-<code>
-from flaskBlog import create_app
 
-app = create_app()
+2.在父文件夹创建<code>run.py</code>以本文档示例
 
-if __name__ == '__main__':
-    app.run()
-</code>
 3.配置好所需的第三方库
 ![selfWeb01](https://user-images.githubusercontent.com/108937151/178087775-81e80f52-53f8-4373-9350-678b82094edf.png)
 
