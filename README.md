@@ -25,7 +25,7 @@
 
 
 
-![基本信息](https://user-images.githubusercontent.com/108937151/178087772-af1f989b-75de-4edf-865c-675b75c97f09.png)
+
 
 
 
